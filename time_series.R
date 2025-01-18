@@ -1,4 +1,4 @@
-data <- read.csv2("C:/Users/kacwa/Downloads/CENY_2967_CREL_20250118181146/CENY_2967_CREL_20250118181146.csv")
+data <- read.csv2("https://raw.githubusercontent.com/KacperWardzala/Time-Series---economic-data-examples/refs/heads/main/agricultural_product_prices.csv")
 head(data)
 
 # Installing the tidyr package if it's not already installed
