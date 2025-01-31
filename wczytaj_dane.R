@@ -1,29 +1,9 @@
-dane <- read.csv2("C:/Users/kacwa/Downloads/CENY_2967_CREL_20250118181146/CENY_2967_CREL_20250118181146.csv")
-head(dane)
-
-#if (!require("tidyr")) install.packages("tidyr")
-
 # Ładowanie pakietu
 library(tidyr)
 library(timeSeries)
 library(forecast)
-# Transformacja tabeli: każdy produkt rolny jako osobna kolumna ----------------------------
-dane_przeksztalcone <- dane %>%
-  pivot_wider(
-    names_from = Produkty.rolne,  # Nazwa kolumny z produktami
-    values_from = Wartosc         # Nazwa kolumny z wartościami (np. cenami)
-  )
 
-# Zapis wyników do nowego pliku CSV (opcjonalnie)
-write.csv(dane_przeksztalcone, "przeksztalcone_dane.csv", row.names = FALSE)
-
-# Wyświetlenie przekształconych danych
-print(dane_przeksztalcone)
-
-rola = cbind(dane_przeksztalcone[,3:4],dane_przeksztalcone[,8:13])
-rola = sort_by(rola, rola[2])
-
-write.csv2(rola, 'ceny_produktow_rolniczych.csv')
+rola = read.csv2('https://raw.githubusercontent.com/KacperWardzala/Time-Series---economic-data-examples/refs/heads/main/ceny_produktow_rolniczych.csv')
 
 trening_rola = rola[1:67,]
 test_rola =  rola[68:83,] # Usuwamy dane z grudnia 2024 - są puste
@@ -51,7 +31,7 @@ summary(model4)
 plot(mleko, owies)
 cor(mleko,owies)
 
-#szeregi czasowe -------------------------------------------
+#szeregi czasowe testowe, poprawne analizy w pliku forecast -------------------------------------------
 
 #install.packages('timeSeries')
 
