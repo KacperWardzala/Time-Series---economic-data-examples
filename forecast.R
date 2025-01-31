@@ -2,6 +2,24 @@ library(tidyr)
 library(timeSeries)
 library(forecast)
 
+# Ładowanie pakietu
+library(tidyr)
+library(timeSeries)
+library(forecast)
+
+rola = read.csv2('https://raw.githubusercontent.com/KacperWardzala/Time-Series---economic-data-examples/refs/heads/main/ceny_produktow_rolniczych.csv')
+
+trening_rola = rola[1:67,]
+test_rola =  rola[68:83,] # Usuwamy dane z grudnia 2024 - są puste
+
+jeczmien = trening_rola[,3]
+pszenzyto = trening_rola[,4]
+owies = trening_rola[,5]
+kukurydza = trening_rola[,6]
+mleko = trening_rola[,8]
+
+test_mleko = test_rola[,8]
+
 ts_mleko = ts(mleko, start = c(2018, 1), end = c(2023, 7), frequency = 12)
 
 full_mleko = ts(rola[8], start = c(2018, 1), end = c(2024, 11), frequency = 12)
